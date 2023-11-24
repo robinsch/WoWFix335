@@ -22,8 +22,27 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    // replace binary in exe (offset: 0xE94)
+    // windowed mode to full screen
     wow_exe.seekp(0xE94);
+    wow_exe << static_cast<char>(0xEB);
+
+    // melee swing on right-click
+    wow_exe.clear();
+    wow_exe.seekg(0);
+    wow_exe.seekp(0x2E1C67);
+    for (size_t i = 0; i < 11; ++i)
+        wow_exe << static_cast<char>(0x90);
+
+    // NPC attack animation when turning
+    wow_exe.clear();
+    wow_exe.seekg(0);
+    wow_exe.seekp(0x33D7C9);
+    wow_exe << static_cast<char>(0xEB);
+
+    // "ghost" attack when NPC evades from combat
+    wow_exe.clear();
+    wow_exe.seekg(0);
+    wow_exe.seekp(0x355BF);
     wow_exe << static_cast<char>(0xEB);
 
     std::cout << "World of Warcraft exe has been patched!\n";
