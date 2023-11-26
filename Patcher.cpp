@@ -45,6 +45,13 @@ int main(int argc, char** argv)
     wow_exe.seekp(0x355BF);
     wow_exe << static_cast<char>(0xEB);
 
+    // missing pre cast animation when canceling channeled spells
+    wow_exe.clear();
+    wow_exe.seekg(0);
+    wow_exe.seekp(0x33E0D6);
+    for (size_t i = 0; i < 22; ++i)
+        wow_exe << static_cast<char>(0x90);
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
