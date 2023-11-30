@@ -3,6 +3,9 @@
 #include <fstream>
 #include <array>
 #include <iterator>
+#include <vector>
+
+// wow base = 50 0C00
 
 int main(int argc, char** argv)
 {
@@ -85,6 +88,12 @@ int main(int argc, char** argv)
         for (char b : { 0x83, 0xF8, 0x32, 0x7D, 0x03, 0x83, 0xC0, 0x01, 0x83, 0xF9, 0x32, 0xEB, 0x31 })
             wow_exe << b;
     }
+
+    // naked character issue
+    wow_exe.clear();
+    wow_exe.seekg(0);
+    wow_exe.seekp(0x1DDC5D);
+    wow_exe << static_cast<char>(0xEB);
 
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
