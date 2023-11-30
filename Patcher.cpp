@@ -95,6 +95,24 @@ int main(int argc, char** argv)
     wow_exe.seekp(0x1DDC5D);
     wow_exe << static_cast<char>(0xEB);
 
+    // patches missiles impacting with terrain
+    {
+        wow_exe.clear();
+        wow_exe.seekg(0);
+        wow_exe.seekp(0x1FC99E);
+        wow_exe << static_cast<char>(0x00);
+
+        wow_exe.clear();
+        wow_exe.seekg(0);
+        wow_exe.seekp(0x1FC8C7);
+        wow_exe << static_cast<char>(0x00);
+
+        wow_exe.clear();
+        wow_exe.seekg(0);
+        wow_exe.seekp(0x01FC735);
+        wow_exe << static_cast<char>(0x00);
+    }
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
