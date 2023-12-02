@@ -82,10 +82,13 @@ int main(int argc, char** argv)
     //// naked character issue
     write_pos(0x1DDC5D, 0xEB);
 
-    //// patches missiles impacting with terrain
+    // patches missiles impacting with terrain
     write_pos(0x1FC99E, 0x00);
     write_pos(0x1FC8C7, 0x00);
     write_pos(0x1FC735, 0x00);
+
+    // patch mail request timeout
+    write_pos(0x6D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
 
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
