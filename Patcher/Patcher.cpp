@@ -9,7 +9,8 @@
 
 static std::fstream wow_exe;
 
-void write_pos(std::streampos pos, uint8_t value)
+template <typename T>
+void write_pos(std::streampos pos, T value)
 {
     wow_exe.clear();
     wow_exe.seekg(0);
@@ -55,16 +56,16 @@ int main(int argc, char** argv)
     }
 
     // windowed mode to full screen
-    write_pos(0xE94, 0xEB);
+    write_pos<uint8_t>(0xE94, 0xEB);
 
     // melee swing on right-click
     write_pos_n(0x2E1C67, 0x90, 11);
 
     // NPC attack animation when turning
-    write_pos(0x33D7C9, 0xEB);
+    write_pos<uint8_t>(0x33D7C9, 0xEB);
 
     // "ghost" attack when NPC evades from combat
-    write_pos(0x355BF, 0xEB);
+    write_pos<uint8_t>(0x355BF, 0xEB);
 
     // missing pre cast animation when canceling channeled spells
     write_pos_n(0x33E0D6, 0x90, 22);
@@ -79,16 +80,21 @@ int main(int argc, char** argv)
     //    write_pos(0x369183, { 0x83, 0xF8, 0x32, 0x7D, 0x03, 0x83, 0xC0, 0x01, 0x83, 0xF9, 0x32, 0xEB, 0x31 });
     //}
 
-    //// naked character issue
-    write_pos(0x1DDC5D, 0xEB);
+    // naked character issue
+    write_pos<uint8_t>(0x1DDC5D, 0xEB);
 
     // patches missiles impacting with terrain
-    write_pos(0x1FC99E, 0x00);
-    write_pos(0x1FC8C7, 0x00);
-    write_pos(0x1FC735, 0x00);
+    write_pos<uint8_t>(0x1FC99E, 0x00);
+    write_pos<uint8_t>(0x1FC8C7, 0x00);
+    write_pos<uint8_t>(0x1FC735, 0x00);
 
     // patch mail request timeout
     write_pos(0x6D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
+
+    // The Return of the "Blue Moon"
+    write_pos_n(0x2F1DB9, 0x90, 12);
+    write_pos<uint32_t>(0x838274, /*CImVector*/ 0xFFFFFFFF);
+    write_pos<float>(0x838284, 1.0f);
 
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
