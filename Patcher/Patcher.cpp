@@ -96,6 +96,10 @@ int main(int argc, char** argv)
     write_pos<uint32_t>(0x838274, /*CImVector*/ 0xFFFFFFFF);
     write_pos<float>(0x838284, 1.0f);
 
+    // better support for planet colors when using darker night mods
+    write_pos<uint8_t>(0x2F2B77, 0xEB);
+    write_pos<uint8_t>(0x2F2B77, 0xEB);    
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
