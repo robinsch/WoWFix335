@@ -80,15 +80,18 @@ int main(int argc, char** argv)
     //    write_pos(0x369183, { 0x83, 0xF8, 0x32, 0x7D, 0x03, 0x83, 0xC0, 0x01, 0x83, 0xF9, 0x32, 0xEB, 0x31 });
     //}
 
-    // naked character issue
+    // naked character issue (disables SPELL_AURA_X_RAY)
     write_pos<uint8_t>(0x1DDC5D, 0xEB);
 
     // patches missiles impacting with terrain
+    // (spell effects such as Typhoon will lose their visual effect once they impact with terrain)
+    // (Typhoon is spanwed on the ground so it loses its visual most of the time)
     write_pos<uint8_t>(0x1FC99E, 0x00);
     write_pos<uint8_t>(0x1FC8C7, 0x00);
     write_pos<uint8_t>(0x1FC735, 0x00);
 
     // patch mail request timeout
+    // you no longer need to wait 60 seconds or relog to receive new mail
     write_pos(0x6D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
 
     // The Return of the "Blue Moon"
@@ -96,11 +99,12 @@ int main(int argc, char** argv)
     write_pos<uint32_t>(0x838274, /*CImVector*/ 0xFFFFFFFF);
     write_pos<float>(0x838284, 1.0f);
 
+    // prevents sun and moon color from being affected by LightParams.dbc
     // better support for planet colors when using darker night mods
     write_pos<uint8_t>(0x2F2B77, 0xEB);
     write_pos<uint8_t>(0x2F2B77, 0xEB);
 
-    // patch area trigger timer to be more precise
+    // patch area trigger timer to be more precise (250ms -> 50ms)
     write_pos<uint8_t>(0x1DB241, 50);
 
     std::cout << "World of Warcraft exe has been patched!\n";
