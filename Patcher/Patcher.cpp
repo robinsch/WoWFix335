@@ -96,8 +96,8 @@ int main(int argc, char** argv)
 
     // The Return of the "Blue Moon"
     write_pos_n(0x2F1DB9, 0x90, 12);
-    write_pos<uint32_t>(0x838274, /*CImVector*/ 0xFFFFFFFF);
-    write_pos<float>(0x838284, 1.0f);
+    write_pos<uint32_t>(0x938E74, /*CImVector*/ 0xFFFFFFFF);
+    write_pos<float>(0x938E84, 1.0f);
 
     // prevents sun and moon color from being affected by LightParams.dbc
     // better support for planet colors when using darker night mods
