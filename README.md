@@ -1,4 +1,4 @@
-WoWFix 335
+WoWFix335
 =====================
 
 
@@ -10,4 +10,4 @@ Usage
 
 Sponsor WoWFix335
 -----------------------
-* To support the continuation of WoWFix335 development you can now [sponsor]([https://github.com/sponsors/robinsch) this project.
+* To support the continuation of WoWFix335 development you can now [sponsor](https://github.com/sponsors/robinsch) this project.
