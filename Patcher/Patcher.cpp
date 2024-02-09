@@ -93,16 +93,6 @@ int main(int argc, char** argv)
     // you no longer need to wait 60 seconds or relog to receive new mail
     write_pos(0x6D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
 
-    // The Return of the "Blue Moon"
-    write_pos_n(0x2F1DB9, 0x90, 12);
-    write_pos<uint32_t>(0x938E74, /*CImVector*/ 0xFFFFFFFF);
-    write_pos<float>(0x938E84, 1.0f);
-
-    // prevents sun and moon color from being affected by LightParams.dbc
-    // better support for planet colors when using darker night mods
-    write_pos<uint8_t>(0x2F2B54, 0xEB);
-    write_pos<uint8_t>(0x2F2B77, 0xEB);
-
     // patch area trigger timer to be more precise (250ms -> 50ms)
     write_pos<uint8_t>(0x1DB241, 50);
 
