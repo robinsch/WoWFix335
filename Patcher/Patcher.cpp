@@ -96,6 +96,9 @@ int main(int argc, char** argv)
     // patch area trigger timer to be more precise (250ms -> 50ms)
     write_pos<uint8_t>(0x1DB241, 50);
 
+    // Return of "The Blue Moon"
+    write_pos(0x4CFBC0, { 0xC7, 0x05, 0x74, 0x8E, 0xD3, 0x00, 0xFF, 0xFF, 0xFF, 0xFF });
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
