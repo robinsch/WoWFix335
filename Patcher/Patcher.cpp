@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 
     // prevents sun and moon color from being affected by LightParams.dbc
     // better support for planet colors when using darker night mods
-    write_pos<uint8_t>(0x2F2B77, 0xEB);
+    write_pos<uint8_t>(0x2F2B54, 0xEB);
     write_pos<uint8_t>(0x2F2B77, 0xEB);
 
     // patch area trigger timer to be more precise (250ms -> 50ms)
