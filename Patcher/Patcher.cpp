@@ -100,6 +100,9 @@ int main(int argc, char** argv)
     // Return of "The Blue Moon"
     write_pos(0x5CFBC0, { 0xC7, 0x05, 0x74, 0x8E, 0xD3, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xC3 });
 
+    // Allow chat commands while dead
+    write_pos<uint8_t>(0x10CA41, 0xEB);
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
