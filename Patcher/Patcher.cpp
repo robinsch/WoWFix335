@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 
     // patch mail request timeout
     // you no longer need to wait 60 seconds or relog to receive new mail
-    write_pos(0x6D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
+    write_pos(0x16D899, { 0x05, 0x01, 0x00, 0x00, 0x00 });
 
     // patch area trigger timer to be more precise (250ms -> 50ms)
     write_pos<uint8_t>(0x2DB241, 50);
