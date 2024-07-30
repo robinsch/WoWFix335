@@ -109,6 +109,9 @@ int main(int argc, char** argv)
     // Allow chat commands while dead
     write_pos<uint8_t>(0x10CA41, 0xEB);
 
+    // non-throttled item cache WDB requests
+    write_pos(0x2689FD, { 0x00, 0x00 });
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
