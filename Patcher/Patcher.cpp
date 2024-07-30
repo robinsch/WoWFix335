@@ -58,6 +58,9 @@ int main(int argc, char** argv)
     // remote code execution exploit
     write_pos<uint8_t>(0x2A7, 0xC0);
 
+    // remote code execution exploit (2)
+    write_pos(0x3D9D7C, { 0x90, 0x90 });
+    
     // windowed mode to full screen
     write_pos<uint8_t>(0xE94, 0xEB);
 
