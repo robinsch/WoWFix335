@@ -112,6 +112,15 @@ int main(int argc, char** argv)
     // non-throttled item cache WDB requests
     write_pos(0x2689FD, { 0x00, 0x00 });
 
+    // trackerSorting cvar = 1
+    write_pos<char*>(0x11D4C5, reinterpret_cast<char*>(0x5DFC64));
+
+    // advancedWorldMap cvar = 1
+    write_pos<char*>(0x11D462, reinterpret_cast<char*>(0x5DFC64));
+
+    // Sound_EnableErrorSpeech cvar = 0
+    write_pos<char*>(0xD0AB7, reinterpret_cast<char*>(0x5DFCA0));
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
