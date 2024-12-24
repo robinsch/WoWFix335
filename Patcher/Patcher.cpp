@@ -121,6 +121,9 @@ int main(int argc, char** argv)
     // Sound_EnableErrorSpeech cvar = 0
     write_pos<char*>(0xD0AB7, reinterpret_cast<char*>(0x5DFCA0));
 
+    // don't clear force reaction when /reload
+    write_pos(0x12811E, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
     std::cout << "World of Warcraft exe has been patched!\n";
     return 0;
 }
